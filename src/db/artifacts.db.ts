@@ -1,20 +1,19 @@
 import mongoose from 'mongoose';
 
-import { Project } from './models/project';
-import { ProjectStatus } from './enums/project-enums';
-import { ProjectRequest, ProjectResponse } from '../api-models/project-models';
+import { Artifact } from './models/artifacts';
+import { ArtifactStatus } from './enums/artifact-enums';
 
 export class ProjectDB {
-    public projectCollection: any;
+    public artifactCollection: any;
 
     constructor() {
-        this.projectCollection = Project;
+        this.artifactCollection = Artifact;
     }
 
-    public getAllProjects = async () => {
+    public getAllArtifacts= async () => {
         return new Promise((res, rej) => {
             try {
-                this.projectCollection.find({ status: { $in: [ProjectStatus.Active] } },
+                this.artifactCollection.find({ status: { $in: [ArtifactStatus.Active] } },
                     function (err: any, docs: any) {
                         if (err) {
                             rej(err);
@@ -30,10 +29,10 @@ export class ProjectDB {
         });
     }
 
-    public createProject = async (data: ProjectRequest) => {
+    public createArtifact = async (data: any) => {
         return new Promise((res, rej) => {
             try {
-                this.projectCollection.insertMany( [data],
+                this.artifactCollection.insertMany( [data],
                     function (err: any, docs: any) {
                         if (err) {
                             rej(err);
@@ -49,10 +48,10 @@ export class ProjectDB {
         });
     }
 
-    public deleteProject = async (id: String) => {
+    public deleteArtifact= async (id: String) => {
         return new Promise((res, rej) => {
             try {
-                this.projectCollection.deleteOne({ _id: id },
+                this.artifactCollection.deleteOne({ _id: id },
                  function (err: any) {
                      if(err){
                          rej(err) ;

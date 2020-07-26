@@ -12,10 +12,12 @@ export class ArtifactsController {
 
     public postArtifact = async (req: Request, res: Response) => {
         try {
-            let data = await this.artifactsService.postArtifacts(req)
-            res.status.json(data)
+            let data = await this.artifactsService.postArtifacts(req);
+            res.status(200).json(data)
         } catch (error) {
             res.status(500).json(error)
         }
     }
+
+
 }

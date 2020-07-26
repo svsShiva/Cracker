@@ -16,4 +16,24 @@ export class ProjectsService {
             throw error;
         }
     }
+
+    public getAllProjects = async () => {
+        try {
+            let data: any = await this.projectDB.getAllProjects();
+            return data;
+        }
+        catch(error) {
+            throw error;
+        }
+    }
+
+    public deleteProject = async (id: String) => {
+        try {
+            let data: any = await this.projectDB.deleteProject(id);
+            return data;
+        }
+        catch(error) {
+            throw error;
+        }
+    }
 }

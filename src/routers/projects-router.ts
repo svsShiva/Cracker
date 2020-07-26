@@ -15,8 +15,12 @@ export class ProjectsRouter {
 
     public routes(): Router {
         this.router
+            .get('/', Logger.log, this.projectsController.getAllProjects);
+        this.router
+            .delete('/:id', Logger.log, this.projectsController.deleteProject);
+        this.router
             .post('/create', Logger.log, this.projectsController.createProject);
-        
+
         return this.router;
     }
 }
