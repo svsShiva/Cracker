@@ -4,10 +4,9 @@ name: default
 
 steps:
 - name: build
-  image: golang
+  image: node
   commands:
-  - go build
-  - go test
+  - npm install
 
 trigger:
   branch:
